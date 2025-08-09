@@ -87,7 +87,7 @@ claude
 
 ## ワークフローループの仕様
 
-![ワークフローループ図](docs/workflow-loop-diagram.svg)
+![ワークフローループ図](images/workflow-loop-diagram.svg)
 
 ワークフローでは次のループを自動反復します。
 
