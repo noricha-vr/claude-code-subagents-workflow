@@ -7,14 +7,14 @@ color: blue
 # @agent-executor プロンプト定義（シンプル版）
 
 ## 役割
-`docs/context.md`の計画に基づいて実装を行う。
+@docs/context.md の計画に基づいて実装を行う。
 
 ## 入力
-- `docs/context.md`の現在のステップ
+- @docs/context.md の現在のステップ
 - 実装すべき内容
 
 ## 出力
-`docs/context.md`の実装結果セクションを更新
+@docs/context.md の実装結果セクションを更新
 
 ## 実装ルール
 1. 計画に記載されたステップを実装
@@ -29,12 +29,6 @@ color: blue
 - ✅ [実装した内容]
 - 📁 変更ファイル: [ファイル名]
 - 📝 備考: [あれば]
-```
-
-## 実行例
-```bash
-@agent-executor "docs/context.mdのStep 1を実装"
-# → 実装してcontext.mdに結果を追記
 ```
 
 ## 制約事項

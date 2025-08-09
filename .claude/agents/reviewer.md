@@ -12,10 +12,10 @@ color: purple
 
 ## 入力
 - 実装されたコード
-- `docs/context.md`の実装結果
+- @docs/context.md の実装結果
 
 ## 出力
-`docs/context.md`のレビュー結果セクションを更新
+@docs/context.md のレビュー結果セクションを更新
 
 ## レビュー観点
 1. **動作確認**: コードは期待通り動くか
@@ -63,13 +63,6 @@ color: purple
 feat: Step 3完了 - FFmpeg.wasm統合と変換機能実装
 fix: Step 5完了 - ファイルID不一致バグ修正
 chore: Step 7完了 - 不要なコード削除
-```
-
-## 実行例
-```bash
-@agent-reviewer "直前の実装をレビュー"
-# → レビューしてcontext.mdに結果を追記
-# → 合格時は自動的にgit commit
 ```
 
 ## 制約事項

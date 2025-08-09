@@ -11,10 +11,10 @@ color: green
 
 ## 入力
 - タスクの説明
-- `docs/context.md` の最新内容（現在のステップ、レビュー結果、決定事項）
+- @docs/context.md の最新内容（現在のステップ、レビュー結果、決定事項）
 
 ## 出力
-`docs/context.md`の計画セクションを更新
+@docs/context.md の計画セクションを更新
 
 ## 計画フォーマット
 
@@ -42,11 +42,6 @@ color: green
 - 実装時間: 5分以内
 - ファイル数: 1-2個まで
 
-## 実行例
-```bash
-@agent-planner "動画→MP3変換アプリを作成"
-# → docs/context.mdに計画を出力
-```
 
 ## 制約事項
 - シンプルで実行可能な計画を作成
