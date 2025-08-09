@@ -49,6 +49,27 @@ claude-code-agents-workflow/
    - エージェントは 1 ステップずつ実装 → レビュー → `docs/context.md` へ反映します。
    - 完了時は設定に従い完了メッセージが表示されます。
 
+### クイックスタート（サンプル plan.md を使って試す）
+
+以下の手順で、このテンプレートを手元で素早く試せます。
+
+```bash
+# 1) クローン
+git clone https://github.com/noricha-vr/claude-code-subagents-workflow.git
+cd claude-code-subagents-workflow
+# 2) サンプルの plan.md を使ってワークフローを実行
+claude
+#    ※ Claude Code で以下を実行してください
+/wf @docs/plan.md に従ってサンプル実装を行い、docs/context.md を更新してください。
+
+# 3) 進捗の確認
+#    docs/context.md にステップ実行結果・レビュー結果が追記されます
+```
+
+補足:
+- `docs/plan.md` はサンプル仕様です。自分のアプリに合わせて差し替えることで、同じワークフローを流用できます。
+- 途中で停止した場合は「Step Nまで実行」と指示してください。
+
 ## ワークフローループの仕様
 
 ワークフローでは次のループを自動反復します。
@@ -66,6 +87,7 @@ claude-code-agents-workflow/
 ## ドキュメントの役割
 
 - `docs/plan.md`: 要件・設計・UML・ユースケース・非機能要件などの「計画書」(実際にはこの仕様書を自分のアプリに合わせて作成したものを利用する)
+ - `docs/plan.md`: 要件・設計・UML・ユースケース・非機能要件などの「計画書」。本リポジトリ同梱の `docs/plan.md` はサンプルです。自分のアプリに合わせて差し替えてください。
 - `docs/context.md`: 実装ステップ、レビュー結果、修正内容、最終判定などの「進捗台帳」
 
 運用メモ:
