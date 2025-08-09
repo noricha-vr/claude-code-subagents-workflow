@@ -1,0 +1,132 @@
+<svg viewBox="0 0 800 920" xmlns="http://www.w3.org/2000/svg">
+  <!-- スタイル定義 -->
+  <defs>
+    <style>
+      .phase-box { fill: #3B82F6; stroke: #1E40AF; stroke-width: 2; rx: 8; }
+      .decision-box { fill: #F59E0B; stroke: #D97706; stroke-width: 2; }
+      .doc-box { fill: #10B981; stroke: #059669; stroke-width: 2; rx: 4; }
+      .text { fill: white; font-family: 'Hiragino Sans', Arial, sans-serif; font-size: 14px; text-anchor: middle; }
+      .small-text { fill: white; font-family: 'Hiragino Sans', Arial, sans-serif; font-size: 12px; text-anchor: middle; }
+      .arrow { stroke: #374151; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+      .loop-arrow { stroke: #DC2626; stroke-width: 2; fill: none; marker-end: url(#loop-arrowhead); }
+      .label { fill: #374151; font-family: 'Hiragino Sans', Arial, sans-serif; font-size: 12px; }
+      .title { fill: #111827; font-family: 'Hiragino Sans', Arial, sans-serif; font-size: 20px; font-weight: bold; text-anchor: middle; }
+    </style>
+    
+    <!-- 矢印の定義 -->
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#374151"/>
+    </marker>
+    <marker id="loop-arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#DC2626"/>
+    </marker>
+  </defs>
+
+  <!-- タイトル -->
+  <text x="400" y="30" class="title">ワークフローループ自動化システム</text>
+
+  <!-- ドキュメント群 -->
+  <rect x="50" y="60" width="120" height="40" class="doc-box"/>
+  <text x="110" y="85" class="small-text">docs/context.md</text>
+  
+  <rect x="200" y="60" width="120" height="40" class="doc-box"/>
+  <text x="260" y="85" class="small-text">docs/plan.md</text>
+
+  <!-- スタート -->
+  <ellipse cx="400" cy="140" rx="60" ry="30" fill="#059669" stroke="#047857" stroke-width="2"/>
+  <text x="400" y="145" class="text">START</text>
+
+  <!-- 1. 計画フェーズ -->
+  <rect x="300" y="200" width="200" height="60" class="phase-box"/>
+  <text x="400" y="225" class="text">1. 計画フェーズ</text>
+  <text x="400" y="245" class="small-text">@agent-planner</text>
+  
+  <!-- 2. 実装フェーズ -->
+  <rect x="300" y="300" width="200" height="60" class="phase-box"/>
+  <text x="400" y="325" class="text">2. 実装フェーズ</text>
+  <text x="400" y="345" class="small-text">@agent-executor (1ステップ)</text>
+
+  <!-- 3. レビューフェーズ -->
+  <rect x="300" y="400" width="200" height="60" class="phase-box"/>
+  <text x="400" y="425" class="text">3. レビューフェーズ</text>
+  <text x="400" y="445" class="small-text">@agent-reviewer</text>
+
+  <!-- レビュー結果判定 -->
+  <polygon points="400,500 470,540 400,580 330,540" class="decision-box"/>
+  <text x="400" y="545" class="text">合格？</text>
+
+  <!-- git commit -->
+  <rect x="520" y="520" width="120" height="40" fill="#6366F1" stroke="#4F46E5" stroke-width="2" rx="4"/>
+  <text x="580" y="545" class="small-text">git commit</text>
+
+  <!-- 4. 修正フェーズ -->
+  <rect x="300" y="620" width="200" height="60" class="phase-box"/>
+  <text x="400" y="645" class="text">4. 修正フェーズ</text>
+  <text x="400" y="665" class="small-text">@agent-executor</text>
+
+  <!-- 進捗確認 -->
+  <polygon points="400,720 470,760 400,800 330,760" class="decision-box"/>
+  <text x="400" y="765" class="text">完了？</text>
+
+  <!-- エンド -->
+  <ellipse cx="400" cy="850" rx="60" ry="30" fill="#DC2626" stroke="#B91C1C" stroke-width="2"/>
+  <text x="400" y="855" class="text">END</text>
+
+  <!-- 矢印 -->
+  <!-- スタート → 計画 -->
+  <path d="M 400 170 L 400 200" class="arrow"/>
+  
+  <!-- 計画 → 実装 -->
+  <path d="M 400 260 L 400 300" class="arrow"/>
+  
+  <!-- 実装 → レビュー -->
+  <path d="M 400 360 L 400 400" class="arrow"/>
+  
+  <!-- レビュー → 判定 -->
+  <path d="M 400 460 L 400 500" class="arrow"/>
+  
+  <!-- 判定 → git commit (合格) -->
+  <path d="M 470 540 L 520 540" class="arrow"/>
+  <text x="490" y="530" class="label">合格</text>
+  
+  <!-- git commit → 進捗確認 -->
+  <path d="M 580 560 L 580 760 L 470 760" class="arrow"/>
+  
+  <!-- 判定 → 修正 (不合格) -->
+  <path d="M 400 580 L 400 620" class="arrow"/>
+  <text x="430" y="600" class="label">要修正</text>
+  
+  <!-- 修正 → レビュー (ループバック) -->
+  <path d="M 300 650 L 250 650 L 250 430 L 300 430" class="loop-arrow"/>
+  
+  <!-- 進捗確認 → 終了 (完了) -->
+  <path d="M 400 800 L 400 820" class="arrow"/>
+  <text x="430" y="810" class="label">完了</text>
+  
+  <!-- 進捗確認 → 計画 (未完了・ループバック) -->
+  <path d="M 330 760 L 100 760 L 100 230 L 300 230" class="loop-arrow"/>
+  <text x="150" y="750" class="label">未完了</text>
+
+  <!-- ドキュメントへのアクセス矢印 -->
+  <path d="M 110 100 L 110 150 L 350 150 L 350 200" stroke="#10B981" stroke-width="1" stroke-dasharray="5,5" fill="none"/>
+  <path d="M 260 100 L 260 150 L 350 150 L 350 200" stroke="#10B981" stroke-width="1" stroke-dasharray="5,5" fill="none"/>
+  
+  <!-- 凡例 -->
+  <rect x="620" y="80" width="150" height="140" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="1" rx="4"/>
+  <text x="695" y="100" class="label" font-weight="bold">凡例</text>
+  
+  <rect x="630" y="110" width="40" height="20" class="phase-box"/>
+  <text x="680" y="125" class="label" text-anchor="start">エージェント</text>
+  
+  <polygon points="650,140 665,150 650,160 635,150" class="decision-box"/>
+  <text x="680" y="155" class="label" text-anchor="start">判定</text>
+  
+  <rect x="630" y="170" width="40" height="20" class="doc-box"/>
+  <text x="680" y="185" class="label" text-anchor="start">ドキュメント</text>
+  
+  <path d="M 630 205 L 670 205" class="loop-arrow"/>
+  <text x="680" y="210" class="label" text-anchor="start">ループバック</text>
+
+  <!-- 補足説明 -->
+  <text x="400" y="900" class="label" text-anchor="middle">各フェーズでdocs/context.mdとdocs/plan.mdを読み込み・更新</text>
+</svg>

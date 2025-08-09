@@ -86,6 +86,8 @@ claude
 
 ## ワークフローループの仕様
 
+![ワークフローループ図](docs/workflow-loop-diagram.svg)
+
 ワークフローでは次のループを自動反復します。
 
 1. **計画フェーズ** (@agent-planner)
