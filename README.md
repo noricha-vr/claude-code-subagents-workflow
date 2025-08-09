@@ -74,15 +74,33 @@ claude
 
 ワークフローでは次のループを自動反復します。
 
-- 1. 次のステップを計画（planner）
-- 2. 1ステップだけ実装（executor）
-- 3. 実装をレビュー（reviewer）
-- 4. 必須修正があれば修正 → 再レビュー
-- 5. `docs/context.md` を更新（進捗・変更点・判定）
-- 6. 完了判定。未完了なら 1 に戻る
+1. **計画フェーズ** (@agent-planner)
+   - `docs/context.md` と `docs/plan.md` を読み込み
+   - 次のステップを計画して `docs/context.md` に記録
+
+2. **実装フェーズ** (@agent-executor)
+   - `docs/context.md` と `docs/plan.md` を読み込み
+   - 1ステップのみ実装
+   - 実装結果を `docs/context.md` に記録
+
+3. **レビューフェーズ** (@agent-reviewer)
+   - `docs/context.md` と `docs/plan.md` を読み込み
+   - 実装内容をレビュー
+   - レビュー結果を `docs/context.md` に記録
+   - 合格時は自動的に git commit
+
+4. **修正フェーズ**（必要時のみ）
+   - 必須修正あり → @agent-executor で修正 → 再レビュー
+
+5. **進捗確認**
+   - 全ステップ完了なら終了
+   - 未完了なら 1 に戻る
 
 重要原則:
-- 1 回の実装 = 1 ステップのみ／各ステップ後に必ずレビュー／進捗は常に `docs/context.md` で管理
+- 各エージェントが `docs/context.md` を読み込み・更新（最新状態を共有）
+- 1 回の実装 = 1 ステップのみ
+- 各ステップ後に必ずレビュー
+- レビュー合格時は自動コミット
 
 ## ドキュメントの役割
 
